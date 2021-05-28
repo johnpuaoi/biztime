@@ -1,11 +1,11 @@
 {
     "name": "biztime",
-    "version": "1.0.0",
-    "description": "An example package for a tutorial.",
+    "version": "1.0.1",
+    "description": "Determine if a time is during business hours.",
     "keywords": [
-      "example",
-      "package",
-      "tutorial"
+      "time",
+      "business",
+      "hours"
     ],
     "homepage": "https://github.com/johnpuaoi/biztime",
     "bugs": {
@@ -14,7 +14,7 @@
     },
     "main": "BizTime.js",
     "scripts": {
-      "test": "mocha"
+      "dev": "tsc -w"
     },
     "repository": {
       "type": "git",

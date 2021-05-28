@@ -1,0 +1,30 @@
+{
+    "name": "biztime",
+    "version": "1.0.0",
+    "description": "An example package for a tutorial.",
+    "keywords": [
+      "example",
+      "package",
+      "tutorial"
+    ],
+    "homepage": "https://github.com/johnpuaoi/biztime",
+    "bugs": {
+      "url": "https://github.com/johnpuaoi/biztimes",
+      "email": "webdeveloper@johnpuaoi.tech"
+    },
+    "main": "BizTime.js",
+    "scripts": {
+      "test": "mocha"
+    },
+    "repository": {
+      "type": "git",
+      "url": "https://github.com/johnpuaoi/biztime"
+    },
+    "author": "John Puaoi <webdeveloper@johnpuaoi.tech> (johnpuaoi.tech)",
+    "license": "MIT",
+    "private": false,
+    "engines": {
+      "node": ">=6.0.0"
+    },
+    "engineStrict": true
+  }

@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "outDir": "./",
+    "declaration": true
+  },
+  "files": ["./src/Biztime.ts"]
+}

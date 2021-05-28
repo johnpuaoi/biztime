@@ -1,7 +1,13 @@
 {
   "compilerOptions": {
     "outDir": "./",
-    "declaration": true
+    "declaration": true,
+    "target": "es5",
+    "module": "commonjs",
+    "lib": ["es2017", "es7", "es6", "dom"],
+    "strict": true,
+    "esModuleInterop": true
   },
-  "files": ["./src/Biztime.ts"]
+  "files": ["./src/Biztime.ts"],
+  "exclude": ["node_modules"]
 }

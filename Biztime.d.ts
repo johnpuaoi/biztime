@@ -34,6 +34,7 @@ export default class BizTime {
     private workingDays;
     private getWorkingDays;
     init(): void;
+    private hasValidTimes;
     private convertToMill;
     private getTodaysStartTime;
     private getTodaysEndTime;

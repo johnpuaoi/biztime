@@ -32,8 +32,8 @@ const bizHours = new BizTime({
     wednesday: { isWorkingDay: true, times: ['09:00:00', '17:00:00']},
     thursday: { isWorkingDay: true, times: ['09:00:00', '17:00:00']},
     friday: { isWorkingDay: true, times: ['09:00:00', '17:00:00']},
-    saturday: { isWorkingDay: false, times: ['09:00:00', '17:00:00']},
-})
+    saturday: { isWorkingDay: false, times: []},
+});
 
 
 // Call Init function to allow biztime to know what days are working days

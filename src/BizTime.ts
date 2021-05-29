@@ -182,4 +182,7 @@ export default class BizTime {
   }
 }
 
-// TODO another
+// TODO another test
+const x = 4;
+
+x + 3;

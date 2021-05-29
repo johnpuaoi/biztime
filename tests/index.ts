@@ -27,4 +27,4 @@ const isWorkingDay = bizHours.isWorkingDay(today);
 
 testEl.innerHTML = isWorkingDay.toString();
 
-console.log('ran');
+console.log('ranas');

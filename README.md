@@ -36,6 +36,10 @@ const bizHours = new BizTime({
 })
 
 
+// Call Init function to allow biztime to know what days are working days
+
+bizHours.init();
+
 // Check if its a working day
 // isWorkingDay() takes in a Date and returns a boolean
 

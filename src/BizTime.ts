@@ -48,6 +48,14 @@ export default class BizTime {
     this.getWorkingDays();
   }
 
+  private hasValidTimes(times: string[]) {
+    if (times.length > 0) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   private convertToMill(time: string): number {
     let ms: number =
       Number(time.split(':')[0]) * 60 * 60 * 1000 +
@@ -63,25 +71,39 @@ export default class BizTime {
 
     switch (today) {
       case 0:
-        todayAsMs = this.convertToMill(this.locale.sunday.times[0]);
+        if (this.hasValidTimes(this.locale.sunday.times)) {
+          todayAsMs = this.convertToMill(this.locale.sunday.times[0]);
+        }
         break;
       case 1:
-        todayAsMs = this.convertToMill(this.locale.monday.times[0]);
+        if (this.hasValidTimes(this.locale.monday.times)) {
+          todayAsMs = this.convertToMill(this.locale.monday.times[0]);
+        }
         break;
       case 2:
-        todayAsMs = this.convertToMill(this.locale.tuesday.times[0]);
+        if (this.hasValidTimes(this.locale.tuesday.times)) {
+          todayAsMs = this.convertToMill(this.locale.tuesday.times[0]);
+        }
         break;
       case 3:
-        todayAsMs = this.convertToMill(this.locale.wednesday.times[0]);
+        if (this.hasValidTimes(this.locale.wednesday.times)) {
+          todayAsMs = this.convertToMill(this.locale.wednesday.times[0]);
+        }
         break;
       case 4:
-        todayAsMs = this.convertToMill(this.locale.thursday.times[0]);
+        if (this.hasValidTimes(this.locale.thursday.times)) {
+          todayAsMs = this.convertToMill(this.locale.thursday.times[0]);
+        }
         break;
       case 5:
-        todayAsMs = this.convertToMill(this.locale.friday.times[0]);
+        if (this.hasValidTimes(this.locale.friday.times)) {
+          todayAsMs = this.convertToMill(this.locale.friday.times[0]);
+        }
         break;
       case 6:
-        todayAsMs = this.convertToMill(this.locale.saturday.times[0]);
+        if (this.hasValidTimes(this.locale.saturday.times)) {
+          todayAsMs = this.convertToMill(this.locale.saturday.times[0]);
+        }
         break;
     }
 
@@ -95,25 +117,39 @@ export default class BizTime {
 
     switch (today) {
       case 0:
-        todayAsMs = this.convertToMill(this.locale.sunday.times[1]);
+        if (this.hasValidTimes(this.locale.sunday.times)) {
+          todayAsMs = this.convertToMill(this.locale.sunday.times[1]);
+        }
         break;
       case 1:
-        todayAsMs = this.convertToMill(this.locale.monday.times[1]);
+        if (this.hasValidTimes(this.locale.monday.times)) {
+          todayAsMs = this.convertToMill(this.locale.monday.times[1]);
+        }
         break;
       case 2:
-        todayAsMs = this.convertToMill(this.locale.tuesday.times[1]);
+        if (this.hasValidTimes(this.locale.tuesday.times)) {
+          todayAsMs = this.convertToMill(this.locale.tuesday.times[1]);
+        }
         break;
       case 3:
-        todayAsMs = this.convertToMill(this.locale.wednesday.times[1]);
+        if (this.hasValidTimes(this.locale.wednesday.times)) {
+          todayAsMs = this.convertToMill(this.locale.wednesday.times[1]);
+        }
         break;
       case 4:
-        todayAsMs = this.convertToMill(this.locale.thursday.times[1]);
+        if (this.hasValidTimes(this.locale.thursday.times)) {
+          todayAsMs = this.convertToMill(this.locale.thursday.times[1]);
+        }
         break;
       case 5:
-        todayAsMs = this.convertToMill(this.locale.friday.times[1]);
+        if (this.hasValidTimes(this.locale.friday.times)) {
+          todayAsMs = this.convertToMill(this.locale.friday.times[1]);
+        }
         break;
       case 6:
-        todayAsMs = this.convertToMill(this.locale.saturday.times[1]);
+        if (this.hasValidTimes(this.locale.saturday.times)) {
+          todayAsMs = this.convertToMill(this.locale.saturday.times[1]);
+        }
         break;
     }
 

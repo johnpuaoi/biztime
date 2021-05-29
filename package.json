@@ -1,30 +1,33 @@
 {
-    "name": "biztime",
-    "version": "1.0.1",
-    "description": "Determine if a time is during business hours.",
-    "keywords": [
-      "time",
-      "business",
-      "hours"
-    ],
-    "homepage": "https://github.com/johnpuaoi/biztime",
-    "bugs": {
-      "url": "https://github.com/johnpuaoi/biztimes",
-      "email": "webdeveloper@johnpuaoi.tech"
-    },
-    "main": "BizTime.js",
-    "scripts": {
-      "dev": "tsc -w"
-    },
-    "repository": {
-      "type": "git",
-      "url": "https://github.com/johnpuaoi/biztime"
-    },
-    "author": "John Puaoi <webdeveloper@johnpuaoi.tech> (johnpuaoi.tech)",
-    "license": "MIT",
-    "private": false,
-    "engines": {
-      "node": ">=6.0.0"
-    },
-    "engineStrict": true
+  "name": "biztime",
+  "version": "1.0.1",
+  "description": "Determine if a time is during business hours.",
+  "keywords": [
+    "time",
+    "business",
+    "hours"
+  ],
+  "homepage": "https://github.com/johnpuaoi/biztime",
+  "bugs": {
+    "url": "https://github.com/johnpuaoi/biztimes",
+    "email": "webdeveloper@johnpuaoi.tech"
+  },
+  "main": "BizTime.js",
+  "scripts": {
+    "dev": "tsc -w"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/johnpuaoi/biztime"
+  },
+  "author": "John Puaoi <webdeveloper@johnpuaoi.tech> (johnpuaoi.tech)",
+  "license": "MIT",
+  "private": false,
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "engineStrict": true,
+  "devDependencies": {
+    "eslint-config-typescript": "^3.0.0"
   }
+}

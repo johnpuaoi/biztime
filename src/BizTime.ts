@@ -67,7 +67,6 @@ export default class BizTime {
   private getTodaysStartTime(): number {
     const today: number = new Date().getDay();
     let todayAsMs: number = 0;
-    const startTime = this.locale.sunday.times[0];
 
     switch (today) {
       case 0:
@@ -113,7 +112,6 @@ export default class BizTime {
   private getTodaysEndTime(): number {
     const today: number = new Date().getDay();
     let todayAsMs: number = 0;
-    const startTime = this.locale.sunday.times[0];
 
     switch (today) {
       case 0:

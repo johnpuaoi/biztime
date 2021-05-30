@@ -8,6 +8,5 @@
     "strict": true,
     "esModuleInterop": true
   },
-  "files": ["./src/Biztime.ts"],
-  "exclude": ["node_modules", "tests"]
+  "exclude": ["./tests/index.ts", "./BizTime.d.ts"]
 }

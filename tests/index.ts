@@ -1,4 +1,4 @@
-import BizTime from '../src/BizTime';
+import BizTime from '../BizTime.js';
 
 // Create an instance
 
@@ -13,18 +13,20 @@ const bizHours = new BizTime({
   saturday: { isWorkingDay: false, times: [] },
 });
 
-// Initialize working days
+// // Initialize working days
 
-bizHours.init();
+// bizHours.init();
 
-// Get test el
+// // Get test el
 
-const testEl = document.querySelector('#test');
+// const testEl = document.querySelector('#test');
 
-const today = new Date();
+// const today = new Date();
 
-const isWorkingDay = bizHours.isWorkingDay(today);
+// const isWorkingDay = bizHours.isWorkingDay(today);
 
-testEl.innerHTML = isWorkingDay.toString();
+// if (testEl !== null) {
+//   testEl.innerHTML = isWorkingDay.toString();
+// }
 
-console.log('ranas');
+console.log('ranask');

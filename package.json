@@ -15,7 +15,7 @@
   "main": "BizTime.js",
   "scripts": {
     "dev": "tsc -w",
-    "tests:dev": "tsc -w -p ./tests/tsconfig.tests.json"
+    "tests:dev": "tsc -w -p tsconfig.tests.json"
   },
   "repository": {
     "type": "git",

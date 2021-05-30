@@ -156,4 +156,4 @@ var BizTime = /** @class */ (function () {
 exports.default = BizTime;
 // TODO another test
 var x = 4;
-x + 3;
+x + 5;

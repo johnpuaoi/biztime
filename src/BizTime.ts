@@ -218,7 +218,7 @@ export default class BizTime {
     return result;
   }
 
-  private isHoliday(dayToCheck: Date): boolean {
+  isHoliday(dayToCheck: Date): boolean {
     const month = this.getMonth(dayToCheck); //months from 1-12
     const day = this.getDay(dayToCheck);
     const year = dayToCheck.getFullYear();

@@ -13,15 +13,18 @@ var bizHours = new BizTime_js_1.default({
     wednesday: { isWorkingDay: true, times: ['09:00:00', '17:00:00'] },
     thursday: { isWorkingDay: true, times: ['09:00:00', '17:00:00'] },
     friday: { isWorkingDay: true, times: ['09:00:00', '17:00:00'] },
-    saturday: { isWorkingDay: false, times: [] },
-});
-// // Initialize working days
-// bizHours.init();
-// // Get test el
-// const testEl = document.querySelector('#test');
-// const today = new Date();
-// const isWorkingDay = bizHours.isWorkingDay(today);
-// if (testEl !== null) {
-//   testEl.innerHTML = isWorkingDay.toString();
-// }
-console.log('ranask');
+    saturday: { isWorkingDay: true, times: ['09:00:00', '15:30:00'] },
+}, [
+    {
+        isOpen: false,
+        date: '06/03/2021',
+        times: ['09:00:00', '12:00:00'],
+    },
+]);
+// Initialize working days
+bizHours.init();
+var today = new Date();
+var isWorkingDay = bizHours.isWorkingDay(today);
+var isWorkingTime = bizHours.isWorkingTime(today);
+console.log(isWorkingDay);
+console.log(isWorkingTime);

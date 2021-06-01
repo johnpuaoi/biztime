@@ -28,9 +28,15 @@ interface Locale {
         times: string[];
     };
 }
+interface holiday {
+    isOpen: boolean | null;
+    date: string;
+    times: string[];
+}
 export default class BizTime {
     private locale;
-    constructor(locale: Locale);
+    private holidays;
+    constructor(locale: Locale, holidays: holiday[]);
     private workingDays;
     private getWorkingDays;
     init(): void;
@@ -38,6 +44,12 @@ export default class BizTime {
     private convertToMill;
     private getTodaysStartTime;
     private getTodaysEndTime;
+    private getHolidayStartTime;
+    private getHolidayEndTime;
+    private getMonth;
+    private getDay;
+    private isHoliday;
+    private isOpenOnHoliday;
     isWorkingDay(dayToCheck: Date): boolean;
     isWorkingTime(timeToCheck: Date): boolean;
 }

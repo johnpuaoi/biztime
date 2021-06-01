@@ -8,8 +8,14 @@ interface Locale {
   saturday: { isWorkingDay: boolean; times: string[] };
 }
 
+interface holiday {
+  isOpen: boolean | null;
+  date: string;
+  times: string[];
+}
+
 export default class BizTime {
-  constructor(private locale: Locale) {}
+  constructor(private locale: Locale, private holidays: holiday[]) {}
 
   private workingDays: number[] = [];
 
@@ -154,12 +160,116 @@ export default class BizTime {
     return todayAsMs;
   }
 
+  private getHolidayStartTime(): number {
+    const today = new Date();
+    const month = this.getMonth(today); //months from 1-12
+    const day = this.getDay(today);
+    const year = today.getFullYear();
+    const fullDate = month + '/' + day + '/' + year;
+
+    const holiday = this.holidays.find((date) => date.date === fullDate);
+
+    let holidayAsMs = 0;
+
+    if (holiday) {
+      holidayAsMs = this.convertToMill(holiday.times[0]);
+    }
+
+    return holidayAsMs;
+  }
+
+  private getHolidayEndTime(): number {
+    const today = new Date();
+    const month = this.getMonth(today); //months from 1-12
+    const day = this.getDay(today);
+    const year = today.getFullYear();
+    const fullDate = month + '/' + day + '/' + year;
+
+    const holiday = this.holidays.find((date) => date.date === fullDate);
+
+    let holidayAsMs = 0;
+
+    if (holiday) {
+      holidayAsMs = this.convertToMill(holiday.times[1]);
+    }
+
+    return holidayAsMs;
+  }
+
+  private getMonth(date: Date): string {
+    let month = date.getMonth() + 1;
+    let result = month.toString();
+
+    if (month < 10) {
+      result = '0' + result.toString();
+    }
+
+    return result;
+  }
+
+  private getDay(date: Date): string {
+    let day = date.getDate();
+    let result = day.toString();
+
+    if (day < 10) {
+      result = '0' + result.toString();
+    }
+
+    return result;
+  }
+
+  private isHoliday(dayToCheck: Date): boolean {
+    const month = this.getMonth(dayToCheck); //months from 1-12
+    const day = this.getDay(dayToCheck);
+    const year = dayToCheck.getFullYear();
+
+    const fullDate = month + '/' + day + '/' + year;
+
+    console.log('fullDate:', fullDate);
+
+    const result = this.holidays.some((holiday) => holiday.date === fullDate);
+
+    return result;
+  }
+
+  private isOpenOnHoliday(dayToCheck: Date): boolean {
+    let result;
+    const month = this.getMonth(dayToCheck); //months from 1-12
+    const day = this.getDay(dayToCheck);
+    const year = dayToCheck.getFullYear();
+
+    const fullDate = month + '/' + day + '/' + year;
+
+    const holidayObj = this.holidays.find(
+      (holiday) => holiday.date === fullDate
+    );
+
+    if (holidayObj?.isOpen) {
+      result = true;
+    } else {
+      result = false;
+    }
+
+    return result;
+  }
+
   isWorkingDay(dayToCheck: Date): boolean {
     // Get day as number
     const day: number = dayToCheck.getDay();
 
     // Check if current day matches as working day then return result;
-    const result = this.workingDays.some((workingDay) => day === workingDay);
+    let result = this.workingDays.some((workingDay) => day === workingDay);
+
+    // Check for hoiliday
+    if (result && this.isHoliday(dayToCheck)) {
+      console.log('isHoliday:', this.isHoliday(dayToCheck));
+      console.log('isOpenOnHoliday:', this.isOpenOnHoliday(dayToCheck));
+      if (this.isHoliday(dayToCheck) && this.isOpenOnHoliday(dayToCheck)) {
+        result = true;
+      } else {
+        result = false;
+      }
+    }
 
     return result;
   }
@@ -169,10 +279,20 @@ export default class BizTime {
     const minutes = timeToCheck.getMinutes();
     const seconds = timeToCheck.getSeconds();
     const time: string = `${hours}:${minutes}:${seconds}`;
-
     const timeAsMS = this.convertToMill(time);
-    const startTime: number = this.getTodaysStartTime();
-    const endTime: number = this.getTodaysEndTime();
+    let startTime: number;
+    let endTime: number;
+
+    if (this.isHoliday(timeToCheck)) {
+      startTime = this.getHolidayStartTime();
+      endTime = this.getHolidayEndTime();
+    } else {
+      startTime = this.getTodaysStartTime();
+      endTime = this.getTodaysEndTime();
+    }
+
+    console.log('holidayStart:', this.getHolidayStartTime());
+    console.log('holidayEnd:', this.getHolidayEndTime());
 
     if (timeAsMS >= startTime && timeAsMS <= endTime) {
       return true;
@@ -181,8 +301,3 @@ export default class BizTime {
     }
   }
 }
-
-// TODO another test
-const x = 4;
-
-x + 5;

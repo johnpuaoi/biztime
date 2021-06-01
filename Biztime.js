@@ -1,8 +1,9 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var BizTime = /** @class */ (function () {
-    function BizTime(locale) {
+    function BizTime(locale, holidays) {
         this.locale = locale;
+        this.holidays = holidays;
         this.workingDays = [];
     }
     BizTime.prototype.getWorkingDays = function () {
@@ -129,11 +130,88 @@ var BizTime = /** @class */ (function () {
         }
         return todayAsMs;
     };
+    BizTime.prototype.getHolidayStartTime = function () {
+        var today = new Date();
+        var month = this.getMonth(today); //months from 1-12
+        var day = this.getDay(today);
+        var year = today.getFullYear();
+        var fullDate = month + '/' + day + '/' + year;
+        var holiday = this.holidays.find(function (date) { return date.date === fullDate; });
+        var holidayAsMs = 0;
+        if (holiday) {
+            holidayAsMs = this.convertToMill(holiday.times[0]);
+        }
+        return holidayAsMs;
+    };
+    BizTime.prototype.getHolidayEndTime = function () {
+        var today = new Date();
+        var month = this.getMonth(today); //months from 1-12
+        var day = this.getDay(today);
+        var year = today.getFullYear();
+        var fullDate = month + '/' + day + '/' + year;
+        var holiday = this.holidays.find(function (date) { return date.date === fullDate; });
+        var holidayAsMs = 0;
+        if (holiday) {
+            holidayAsMs = this.convertToMill(holiday.times[1]);
+        }
+        return holidayAsMs;
+    };
+    BizTime.prototype.getMonth = function (date) {
+        var month = date.getMonth() + 1;
+        var result = month.toString();
+        if (month < 10) {
+            result = '0' + result.toString();
+        }
+        return result;
+    };
+    BizTime.prototype.getDay = function (date) {
+        var day = date.getDate();
+        var result = day.toString();
+        if (day < 10) {
+            result = '0' + result.toString();
+        }
+        return result;
+    };
+    BizTime.prototype.isHoliday = function (dayToCheck) {
+        var month = this.getMonth(dayToCheck); //months from 1-12
+        var day = this.getDay(dayToCheck);
+        var year = dayToCheck.getFullYear();
+        var fullDate = month + '/' + day + '/' + year;
+        console.log('fullDate:', fullDate);
+        var result = this.holidays.some(function (holiday) { return holiday.date === fullDate; });
+        return result;
+    };
+    BizTime.prototype.isOpenOnHoliday = function (dayToCheck) {
+        var result;
+        var month = this.getMonth(dayToCheck); //months from 1-12
+        var day = this.getDay(dayToCheck);
+        var year = dayToCheck.getFullYear();
+        var fullDate = month + '/' + day + '/' + year;
+        var holidayObj = this.holidays.find(function (holiday) { return holiday.date === fullDate; });
+        if (holidayObj === null || holidayObj === void 0 ? void 0 : holidayObj.isOpen) {
+            result = true;
+        }
+        else {
+            result = false;
+        }
+        return result;
+    };
     BizTime.prototype.isWorkingDay = function (dayToCheck) {
         // Get day as number
         var day = dayToCheck.getDay();
         // Check if current day matches as working day then return result;
         var result = this.workingDays.some(function (workingDay) { return day === workingDay; });
+        // Check for hoiliday
+        if (result && this.isHoliday(dayToCheck)) {
+            console.log('isHoliday:', this.isHoliday(dayToCheck));
+            console.log('isOpenOnHoliday:', this.isOpenOnHoliday(dayToCheck));
+            if (this.isHoliday(dayToCheck) && this.isOpenOnHoliday(dayToCheck)) {
+                result = true;
+            }
+            else {
+                result = false;
+            }
+        }
         return result;
     };
     BizTime.prototype.isWorkingTime = function (timeToCheck) {
@@ -142,8 +220,18 @@ var BizTime = /** @class */ (function () {
         var seconds = timeToCheck.getSeconds();
         var time = hours + ":" + minutes + ":" + seconds;
         var timeAsMS = this.convertToMill(time);
-        var startTime = this.getTodaysStartTime();
-        var endTime = this.getTodaysEndTime();
+        var startTime;
+        var endTime;
+        if (this.isHoliday(timeToCheck)) {
+            startTime = this.getHolidayStartTime();
+            endTime = this.getHolidayEndTime();
+        }
+        else {
+            startTime = this.getTodaysStartTime();
+            endTime = this.getTodaysEndTime();
+        }
+        console.log('holidayStart:', this.getHolidayStartTime());
+        console.log('holidayEnd:', this.getHolidayEndTime());
         if (timeAsMS >= startTime && timeAsMS <= endTime) {
             return true;
         }
@@ -154,6 +242,3 @@ var BizTime = /** @class */ (function () {
     return BizTime;
 }());
 exports.default = BizTime;
-// TODO another test
-var x = 4;
-x + 5;

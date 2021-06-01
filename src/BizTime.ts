@@ -218,6 +218,17 @@ export default class BizTime {
     return result;
   }
 
+  getHoliday(dayToCheck: Date): holiday | undefined {
+    const month = this.getMonth(dayToCheck); //months from 1-12
+    const day = this.getDay(dayToCheck);
+    const year = dayToCheck.getFullYear();
+    const fullDate = month + '/' + day + '/' + year;
+
+    const result = this.holidays.find((holiday) => holiday.date === fullDate);
+
+    return result;
+  }
+
   isHoliday(dayToCheck: Date): boolean {
     const month = this.getMonth(dayToCheck); //months from 1-12
     const day = this.getDay(dayToCheck);
@@ -225,14 +236,12 @@ export default class BizTime {
 
     const fullDate = month + '/' + day + '/' + year;
 
-    console.log('fullDate:', fullDate);
-
     const result = this.holidays.some((holiday) => holiday.date === fullDate);
 
     return result;
   }
 
-  private isOpenOnHoliday(dayToCheck: Date): boolean {
+  isOpenOnHoliday(dayToCheck: Date): boolean {
     let result;
     const month = this.getMonth(dayToCheck); //months from 1-12
     const day = this.getDay(dayToCheck);

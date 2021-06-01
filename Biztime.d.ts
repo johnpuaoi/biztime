@@ -48,8 +48,9 @@ export default class BizTime {
     private getHolidayEndTime;
     private getMonth;
     private getDay;
-    private isHoliday;
-    private isOpenOnHoliday;
+    getHoliday(dayToCheck: Date): holiday | undefined;
+    isHoliday(dayToCheck: Date): boolean;
+    isOpenOnHoliday(dayToCheck: Date): boolean;
     isWorkingDay(dayToCheck: Date): boolean;
     isWorkingTime(timeToCheck: Date): boolean;
 }

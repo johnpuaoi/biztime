@@ -172,12 +172,19 @@ var BizTime = /** @class */ (function () {
         }
         return result;
     };
+    BizTime.prototype.getHoliday = function (dayToCheck) {
+        var month = this.getMonth(dayToCheck); //months from 1-12
+        var day = this.getDay(dayToCheck);
+        var year = dayToCheck.getFullYear();
+        var fullDate = month + '/' + day + '/' + year;
+        var result = this.holidays.find(function (holiday) { return holiday.date === fullDate; });
+        return result;
+    };
     BizTime.prototype.isHoliday = function (dayToCheck) {
         var month = this.getMonth(dayToCheck); //months from 1-12
         var day = this.getDay(dayToCheck);
         var year = dayToCheck.getFullYear();
         var fullDate = month + '/' + day + '/' + year;
-        console.log('fullDate:', fullDate);
         var result = this.holidays.some(function (holiday) { return holiday.date === fullDate; });
         return result;
     };

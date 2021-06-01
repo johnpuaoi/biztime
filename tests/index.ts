@@ -15,9 +15,9 @@ const bizHours = new BizTime(
   },
   [
     {
-      isOpen: false,
-      date: '06/03/2021',
-      times: ['09:00:00', '12:00:00'],
+      isOpen: true,
+      date: '06/01/2021',
+      times: ['09:00:00', '11:00:00'],
     },
   ]
 );

@@ -5,7 +5,7 @@ Determine if a time is during business hours.
 ## Usage
 
 ```Typescript
-import BizTime from 'biztime;
+import BizTime from 'biztime';
 
 /*
 
@@ -19,7 +19,7 @@ interface Locale {
   saturday: { isWorkingDay: boolean; times: string[] };
 }
 
-*/
+
 
 /*
 

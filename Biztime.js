@@ -203,8 +203,6 @@ var BizTime = /** @class */ (function () {
         var result = this.workingDays.some(function (workingDay) { return day === workingDay; });
         // Check for hoiliday
         if (result && this.isHoliday(dayToCheck)) {
-            console.log('isHoliday:', this.isHoliday(dayToCheck));
-            console.log('isOpenOnHoliday:', this.isOpenOnHoliday(dayToCheck));
             if (this.isHoliday(dayToCheck) && this.isOpenOnHoliday(dayToCheck)) {
                 result = true;
             }
@@ -230,8 +228,6 @@ var BizTime = /** @class */ (function () {
             startTime = this.getTodaysStartTime();
             endTime = this.getTodaysEndTime();
         }
-        console.log('holidayStart:', this.getHolidayStartTime());
-        console.log('holidayEnd:', this.getHolidayEndTime());
         if (timeAsMS >= startTime && timeAsMS <= endTime) {
             return true;
         }

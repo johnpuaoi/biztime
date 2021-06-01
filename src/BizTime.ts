@@ -262,8 +262,6 @@ export default class BizTime {
 
     // Check for hoiliday
     if (result && this.isHoliday(dayToCheck)) {
-      console.log('isHoliday:', this.isHoliday(dayToCheck));
-      console.log('isOpenOnHoliday:', this.isOpenOnHoliday(dayToCheck));
       if (this.isHoliday(dayToCheck) && this.isOpenOnHoliday(dayToCheck)) {
         result = true;
       } else {
@@ -290,9 +288,6 @@ export default class BizTime {
       startTime = this.getTodaysStartTime();
       endTime = this.getTodaysEndTime();
     }
-
-    console.log('holidayStart:', this.getHolidayStartTime());
-    console.log('holidayEnd:', this.getHolidayEndTime());
 
     if (timeAsMS >= startTime && timeAsMS <= endTime) {
       return true;
